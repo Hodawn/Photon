@@ -29,14 +29,17 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         // 게임 버전 설정
         PhotonNetwork.GameVersion = version;
         // 접속 유저의 닉네임 설정
-        PhotonNetwork.NickName = userId;
+        //PhotonNetwork.NickName = userId;
         // 포톤 서버와의 데이터의 초당 전송 횟수
         Debug.Log(PhotonNetwork.SendRate);
 
         // RoomItem 프리팹 로드
         roomItemPrefab = Resources.Load<GameObject>("RoomItem");
         // 포톤 서버 접속
-        PhotonNetwork.ConnectUsingSettings();
+        if (PhotonNetwork.IsConnected == false)
+        {
+            PhotonNetwork.ConnectUsingSettings();
+        }
     }
     void Start()
     {
